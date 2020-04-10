@@ -21,3 +21,4 @@ public class User {
     private LocalDate birthDay;
     private String emailAddress;
 }
+

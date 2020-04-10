@@ -1,17 +1,15 @@
 package com.tms.issuelistbackend.service;
 
+import com.tms.issuelistbackend.controller.dto.UserDto;
+import com.tms.issuelistbackend.domain.User;
 import com.tms.issuelistbackend.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
+public interface UserService {
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    void AddUser(User user);
 
 
 }
