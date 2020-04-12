@@ -11,5 +11,5 @@ public interface UserService {
 
     void AddUser(User user);
 
-
+    UserDto getPassWordByUserName(String userName);
 }

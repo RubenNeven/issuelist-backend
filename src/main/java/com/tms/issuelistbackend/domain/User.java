@@ -18,6 +18,7 @@ public class User {
     private String lastName;
     private String userName;
     private String passWord;
+    private String confirmPassWord;
     private LocalDate birthDay;
     private String emailAddress;
 }

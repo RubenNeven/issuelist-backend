@@ -2,6 +2,7 @@ package com.tms.issuelistbackend.controller.mapper;
 
 import com.tms.issuelistbackend.controller.dto.UserDto;
 import com.tms.issuelistbackend.domain.User;
+import com.tms.issuelistbackend.security.PassWordEncryption;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,8 @@ public class UserDtoMapper {
                 .emailAddress(user.getEmailAddress())
                 .birthDay(user.getBirthDay())
                 .userName(user.getUserName())
-                .passWord(user.getPassWord())
+                .passWord(PassWordEncryption.encryptPassword(user.getPassWord()))
+                .confirmPassWord(PassWordEncryption.encryptPassword(user.getConfirmPassWord()))
                 .build();
     }
 
@@ -27,7 +29,8 @@ public class UserDtoMapper {
                 .emailAddress(user.getEmailAddress())
                 .birthDay(user.getBirthDay())
                 .userName(user.getUserName())
-                .passWord(user.getPassWord())
+                .passWord(PassWordEncryption.encryptPassword(user.getPassWord()))
+                .confirmPassWord(PassWordEncryption.encryptPassword(user.getConfirmPassWord()))
                 .build();
     }
 }

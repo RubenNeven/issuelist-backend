@@ -13,28 +13,22 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "firstName")
     private String firstName;
 
-    @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "userName")
     private String userName;
 
-    @Column(name = "passWord")
     private String passWord;
 
-    @Column(name = "birthDay")
+    private String confirmPassWord;
+
     private LocalDate birthDay;
 
-    @Column(name = "email")
     private String emailAddress;
 }
