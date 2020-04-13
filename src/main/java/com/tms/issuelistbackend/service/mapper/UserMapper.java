@@ -46,4 +46,5 @@ public class UserMapper {
                 .confirmPassWord(userEntiy.getConfirmPassWord())
                 .build();
     }
+
 }

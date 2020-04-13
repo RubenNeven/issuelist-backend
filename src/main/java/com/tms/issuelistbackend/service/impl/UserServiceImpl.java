@@ -1,9 +1,13 @@
 package com.tms.issuelistbackend.service.impl;
 
+import com.tms.issuelistbackend.controller.dto.SecurityUserDto;
 import com.tms.issuelistbackend.controller.dto.UserDto;
+import com.tms.issuelistbackend.controller.mapper.SecurityUserDtoMapper;
+import com.tms.issuelistbackend.domain.SecurityUser;
 import com.tms.issuelistbackend.domain.User;
 import com.tms.issuelistbackend.persistence.entity.UserEntity;
 import com.tms.issuelistbackend.persistence.repository.UserRepository;
+import com.tms.issuelistbackend.security.PassWordEncryption;
 import com.tms.issuelistbackend.service.mapper.UserMapper;
 import com.tms.issuelistbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private UserMapper mapper;
+    private PassWordEncryption passWordEncryption;
+
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserMapper mapper) {
@@ -29,7 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getPassWordByUserName(String userName) {
-       return mapper.maptoDto(userRepository.findByUserName(userName));
+    public boolean verifyPassWord(String userName, String passWord) {
+        UserEntity userEntity = userRepository.findPassWordByUserName(userName);
+        String storedPassWord = userEntity.getPassWord();
+        if (passWordEncryption.checkEncryptedPassword(passWord, storedPassWord)){
+            return true;
+        }
+        return false;
     }
+
 }
