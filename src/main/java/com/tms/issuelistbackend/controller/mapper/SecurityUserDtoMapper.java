@@ -5,7 +5,9 @@ import com.tms.issuelistbackend.controller.dto.UserDto;
 import com.tms.issuelistbackend.domain.SecurityUser;
 import com.tms.issuelistbackend.domain.User;
 import com.tms.issuelistbackend.security.PassWordEncryption;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SecurityUserDtoMapper {
 
     public SecurityUserDto map(SecurityUser securityUser){

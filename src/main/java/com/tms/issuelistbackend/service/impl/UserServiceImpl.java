@@ -36,13 +36,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean verifyPassWord(String userName, String passWord) {
+    public void verifyPassWord(String userName, String passWord) {
         UserEntity userEntity = userRepository.findPassWordByUserName(userName);
         String storedPassWord = userEntity.getPassWord();
-        if (passWordEncryption.checkEncryptedPassword(passWord, storedPassWord)){
-            return true;
+        passWordEncryption.checkEncryptedPassword(passWord, storedPassWord);{
         }
-        return false;
     }
-
 }

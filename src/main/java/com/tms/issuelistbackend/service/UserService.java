@@ -13,5 +13,5 @@ public interface UserService {
 
     void AddUser(User user);
 
-    boolean verifyPassWord(String userName, String passWord);
+    void verifyPassWord(String userName, String passWord);
 }

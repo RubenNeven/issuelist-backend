@@ -23,29 +23,26 @@ public class UserController {
     private UserDtoMapper mapper;
     private SecurityUserDtoMapper securityUserDtoMapper;
 
+    @Autowired
     public UserController(UserService userService, UserDtoMapper mapper, SecurityUserDtoMapper securityUserDtoMapper) {
         this.userService = userService;
         this.mapper = mapper;
         this.securityUserDtoMapper = securityUserDtoMapper;
     }
 
-    @Autowired
-    public UserController(UserService userService, UserDtoMapper mapper) {
-        this.userService = userService;
-        this.mapper = mapper;
-    }
 
-    @PostMapping
+
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void addUser(@RequestBody @Valid UserDto userDto) {
         User user = mapper.map(userDto);
         userService.AddUser(user);
     }
 
-    @PostMapping
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     public void verifyUserPassWord(@RequestBody @Valid SecurityUserDto securityUserDto){
         SecurityUser securityUser = securityUserDtoMapper.map(securityUserDto);
-        userService.getPassWordByUserName(securityUser.getUserName());
+        userService.verifyPassWord(securityUser.getUserName(), securityUser.getPassWord());
     }
-
 }
